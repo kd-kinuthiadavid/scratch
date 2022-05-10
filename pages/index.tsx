@@ -1,10 +1,24 @@
+import { NextPage } from "next";
+import Head from "next/head";
+import React from "react";
 import styled from "styled-components";
+import NavBar from "../components/NavBar";
 
-const Title = styled.h1`
-  color: red;
-  font-size: 50px;
+const Onboarding: NextPage = () => {
+  return (
+    <div>
+      <Head>
+        <title>Scratch | Onboarding</title>
+      </Head>
+      <Main>
+        <NavBar />
+      </Main>
+    </div>
+  );
+};
+
+const Main = styled.main`
+  display: flex;
 `;
 
-export default function Home() {
-  return <Title>scratch</Title>;
-}
+export default Onboarding;

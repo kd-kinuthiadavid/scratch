@@ -39,6 +39,9 @@ const Onboarding: NextPage = () => {
 const OnboardingWrapper = styled.div`
   height: 100vh;
   background-image: url(${bgImgUrl});
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: cover;
 `;
 
 const Main = styled.main`

@@ -3,6 +3,8 @@ import Head from "next/head";
 import React from "react";
 import styled from "styled-components";
 import NavBar from "../components/NavBar";
+
+import Button from "../components/Button";
 import { imagesLoaer } from "../utils";
 
 const bgImgUrl = imagesLoaer("onboarding_bg_img_kKPNX61Ce.png");
@@ -26,8 +28,8 @@ const Onboarding: NextPage = () => {
           </p>
         </div>
         <div className="action_buttons">
-          <button className="primary">Join Scratch</button>
-          <button className="outlined">Learn More</button>
+          <Button variant="primary" text="Join Scratch" />
+          <Button variant="outlined" text="Learn More" />
         </div>
       </Main>
     </OnboardingWrapper>
@@ -71,30 +73,6 @@ const Main = styled.main`
     display: flex;
     gap: 1rem;
     margin-top: 2.5rem;
-  }
-
-  button {
-    width: 14.94rem;
-    height: 3.125rem;
-    border-radius: 0.5rem;
-    border: none;
-    filter: drop-shadow(0px 6px 20px rgba(13, 51, 32, 0.1));
-
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 21px;
-    text-align: center;
-  }
-
-  button.primary {
-    background-color: #30be76;
-    color: #ffffff;
-  }
-
-  button.outlined {
-    background-color: #ffffff;
-    color: #30be76;
-    border: 2px solid #30be76;
   }
 `;
 

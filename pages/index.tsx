@@ -51,6 +51,10 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
 
+  @media (min-width: 1400px) {
+    padding-top: 6rem;
+  }
+
   h1 {
     margin: 0;
     margin-top: 4.5rem;
@@ -60,6 +64,11 @@ const Main = styled.main`
     letter-spacing: -0.5px;
     max-width: 50vw;
     color: #030f09;
+
+    @media (min-width: 1400px) {
+      font-size: 3.5rem;
+      margin-top: 6rem;
+    }
   }
 
   p {
@@ -70,12 +79,22 @@ const Main = styled.main`
     line-height: 22px;
     max-width: 50vw;
     color: #606060;
+
+    @media (min-width: 1400px) {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+    }
   }
 
   .action_buttons {
     display: flex;
     gap: 1rem;
     margin-top: 2.5rem;
+
+    @media (min-width: 1400px) {
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
   }
 `;
 

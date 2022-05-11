@@ -32,6 +32,11 @@ const ScBtn = styled.button`
   font-size: 16px;
   line-height: 21px;
   text-align: center;
+
+  @media (min-width: 1400px) {
+    width: 16.94rem;
+    height: 4.125rem;
+  }
 `;
 
 const PrimaryBtn = styled(ScBtn)`

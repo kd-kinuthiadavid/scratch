@@ -4,9 +4,7 @@ import styled from "styled-components";
 import { imagesLoaer } from "../../utils";
 
 const NavBar = () => {
-  const logoURL = imagesLoaer(
-    "Logos/Desktop/Logoscratch_logo_SzQC08Uhz.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1652158985133"
-  );
+  const logoURL = imagesLoaer("Logos/Desktop/Logoscratch_logo_SzQC08Uhz.svg");
   return (
     <Nav>
       <Image

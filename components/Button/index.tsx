@@ -33,6 +33,15 @@ const ScBtn = styled.button`
   line-height: 21px;
   text-align: center;
 
+  @media (max-width: 600px) {
+    width: 11.94rem;
+    height: 3rem;
+
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
   @media (min-width: 1400px) {
     width: 16.94rem;
     height: 4.125rem;

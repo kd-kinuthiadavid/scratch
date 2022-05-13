@@ -8,6 +8,7 @@ import Button from "../components/Button";
 import { imagesLoaer } from "../utils";
 
 const bgImgUrl = imagesLoaer("onboarding_bg_img_kKPNX61Ce.png");
+const tbBgImgUrl = imagesLoaer("onboarding_tablet_bg_oxMjU5Zyb.png");
 
 const Onboarding: NextPage = () => {
   return (
@@ -19,7 +20,7 @@ const Onboarding: NextPage = () => {
         <NavBar />
         <div className="main_content">
           <h1>
-            Join over 50 millions people
+            Join over 50 million people
             <br /> sharing recipes everyday
           </h1>
           <p>
@@ -42,6 +43,16 @@ const OnboardingWrapper = styled.div`
   background-repeat: no-repeat;
   background-position: right;
   background-size: cover;
+
+  @media (max-width: 1000px) {
+    justify-content: center;
+    align-items: center;
+    background-image: url(${tbBgImgUrl}),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.0001) 52.12%, #ffffff 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+  }
 `;
 
 const Main = styled.main`
@@ -50,6 +61,17 @@ const Main = styled.main`
   padding: 3rem 0 0 8rem;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 600px) {
+    padding-top: 10rem !important;
+  }
+
+  @media (max-width: 1000px) {
+    padding: 0;
+    padding-top: 3rem;
+    align-items: center;
+    text-align: center;
+  }
 
   @media (min-width: 1400px) {
     padding-top: 6rem;
@@ -65,8 +87,15 @@ const Main = styled.main`
     max-width: 50vw;
     color: #030f09;
 
+    @media (max-width: 1000px) {
+      font-size: 2rem;
+      line-height: 35px;
+      letter-spacing: 0.5px;
+      max-width: 80vw;
+    }
+
     @media (min-width: 1400px) {
-      font-size: 3.5rem;
+      font-size: 2.7rem;
       margin-top: 6rem;
     }
   }
@@ -80,9 +109,14 @@ const Main = styled.main`
     max-width: 50vw;
     color: #606060;
 
+    @media (max-width: 1000px) {
+      color: #4f4d4d;
+      max-width: 80vw;
+    }
+
     @media (min-width: 1400px) {
-      font-size: 1.5rem;
-      margin-top: 2rem;
+      font-size: 1rem;
+      margin-top: 1rem;
     }
   }
 
@@ -90,6 +124,15 @@ const Main = styled.main`
     display: flex;
     gap: 1rem;
     margin-top: 2.5rem;
+
+    @media (max-width: 600px) {
+      max-width: 80vw;
+    }
+
+    @media (max-width: 1000px) {
+      align-items: center;
+      justify-content: center;
+    }
 
     @media (min-width: 1400px) {
       gap: 2rem;

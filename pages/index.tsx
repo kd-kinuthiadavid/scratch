@@ -1,16 +1,45 @@
 import { NextPage } from "next";
 import Head from "next/head";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import NavBar from "../components/NavBar";
 
 import Button from "../components/Button";
 import { imagesLoaer } from "../utils";
+import OnboardingModal from "../components/OnboardingModal";
 
 const bgImgUrl = imagesLoaer("onboarding_bg_img_kKPNX61Ce.png");
 const tbBgImgUrl = imagesLoaer("onboarding_tablet_bg_oxMjU5Zyb.png");
 
 const Onboarding: NextPage = () => {
+  // state
+  const [isOnboardingModalOpen, setIsOnboardingModalOpen] = useState(false);
+  const [ariaModalTitle, setAriaModalTitle] = useState("");
+  const [ariaModalDescription, setAriaModalDescription] = useState("");
+  const [onBoardingModalRole, setOnBoardingModalRole] = useState("");
+
+  const closeOnboardingModal = () => setIsOnboardingModalOpen(false);
+  const openOnboardingModal = () => setIsOnboardingModalOpen(true);
+
+  const handleSignup = () => {
+    // open the modal
+    setIsOnboardingModalOpen(true);
+
+    // set the modal role, title and description
+    setAriaModalTitle("Signup Modal");
+    setAriaModalDescription("This is the signup modal");
+    setOnBoardingModalRole("Signup");
+  };
+  const handleLogin = () => {
+    // open the modal
+    setIsOnboardingModalOpen(true);
+
+    // set the modal role, title and description
+    setAriaModalTitle("Login Modal");
+    setAriaModalDescription("This is the login modal");
+    setOnBoardingModalRole("Login");
+  };
+
   return (
     <OnboardingWrapper>
       <Head>
@@ -18,6 +47,15 @@ const Onboarding: NextPage = () => {
       </Head>
       <Main>
         <NavBar />
+        {isOnboardingModalOpen && (
+          <OnboardingModal
+            isModalOpen={isOnboardingModalOpen}
+            handleCloseModal={closeOnboardingModal}
+            ariaModalTitle={ariaModalTitle}
+            ariaModalDescription={ariaModalDescription}
+            role={onBoardingModalRole}
+          />
+        )}
         <div className="main_content">
           <h1>
             Join over 50 million people
@@ -29,8 +67,16 @@ const Onboarding: NextPage = () => {
           </p>
         </div>
         <div className="action_buttons">
-          <Button variant="primary" text="Join Scratch" />
-          <Button variant="outlined" text="Learn More" />
+          <Button
+            variant="primary"
+            text="Join Scratch"
+            handleClick={handleSignup}
+          />
+          <Button
+            variant="outlined"
+            text="Learn More"
+            handleClick={handleLogin}
+          />
         </div>
       </Main>
     </OnboardingWrapper>

@@ -4,17 +4,18 @@ import styled from "styled-components";
 interface ButtonProps {
   variant: string;
   text: string;
+  handleClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const ScButton = ({ variant, text }: ButtonProps) => {
+const ScButton = ({ variant, text, handleClick }: ButtonProps) => {
   return (
     <>
       {variant === "primary" ? (
-        <PrimaryBtn>{text}</PrimaryBtn>
+        <PrimaryBtn onClick={handleClick}>{text}</PrimaryBtn>
       ) : variant === "outlined" ? (
-        <SecBtn>{text}</SecBtn>
+        <SecBtn onClick={handleClick}>{text}</SecBtn>
       ) : (
-        <SecBtn>{text}</SecBtn>
+        <SecBtn onClick={handleClick}>{text}</SecBtn>
       )}
     </>
   );

@@ -56,7 +56,9 @@ const OnboardingModal = ({
             <h3>
               {role === "Signup" ? "Start from Scratch" : "Welcome Back!"}
             </h3>
-            <small>{`Please  to continue.`}</small>
+            <small>{`Please ${
+              role === "Signup" ? "sign up" : "log in"
+            } to continue.`}</small>
           </div>
           <div className="form_buttons">
             <Button

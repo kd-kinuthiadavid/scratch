@@ -9,6 +9,9 @@ import Button from "@mui/material/Button";
 
 import { imagesLoaer } from "../../utils";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth, googleAuthProvider } from "../../config/firebaseConfig";
+import { FirebaseError } from "firebase/app";
 
 interface OnboardingModalProps {
   isModalOpen: boolean;
@@ -40,6 +43,37 @@ const OnboardingModal = ({
   // hooks
   const isNotBigScreen = useMediaQuery("(max-width:800px)");
 
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleAuthProvider);
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential?.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+
+      console.log(
+        `***** success: Google Sign In Result *****`,
+        user,
+        credential,
+        token
+      );
+
+      // close the modal
+      handleCloseModal();
+
+      //@TODO: redirect to the home page? or to the profile page? - especialy if it's the first time the user is signing up
+    } catch (error) {
+      // Handle Errors here.
+      const errorCode = error?.code;
+      const errorMessage = error?.message;
+      // The email of the user's account used.
+      const email = error?.customData.email;
+
+      console.log("**** err: err signing in with google ****", errorMessage);
+    }
+  };
+
   return (
     <Modal
       open={isModalOpen}
@@ -70,6 +104,7 @@ const OnboardingModal = ({
               variant="outlined"
               startIcon={!isNotBigScreen && <GoogleIcon />}
               size="large"
+              onClick={handleGoogleSignIn}
             >
               {`${role === "Signup" ? "Sign Up" : "Login"} with Google`}
             </Button>

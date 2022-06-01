@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === "development") {
   connectAuthEmulator(auth, "http://localhost:9099");
 }
 // initialize firebase analytics
-const analytics = getAnalytics(app);
+const analytics = typeof window !== "undefined" && getAnalytics(app);
 
 // initialize firebase auth providers
 const googleAuthProvider = new GoogleAuthProvider();

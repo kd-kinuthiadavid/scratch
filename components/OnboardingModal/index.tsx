@@ -9,8 +9,18 @@ import Button from "@mui/material/Button";
 
 import { imagesLoaer } from "../../utils";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth, googleAuthProvider } from "../../config/firebaseConfig";
+import {
+  FacebookAuthProvider,
+  GoogleAuthProvider,
+  signInWithPopup,
+  TwitterAuthProvider,
+} from "firebase/auth";
+import {
+  auth,
+  facebookAuthProvider,
+  googleAuthProvider,
+  twitterAuthProvider,
+} from "../../config/firebaseConfig";
 import { FirebaseError } from "firebase/app";
 
 interface OnboardingModalProps {
@@ -46,18 +56,10 @@ const OnboardingModal = ({
   const handleGoogleSignIn = async () => {
     try {
       const result = await signInWithPopup(auth, googleAuthProvider);
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential?.accessToken;
       // The signed-in user info.
       const user = result.user;
 
-      console.log(
-        `***** success: Google Sign In Result *****`,
-        user,
-        credential,
-        token
-      );
+      console.log(`***** success: Google Sign In Result *****`);
 
       // close the modal
       handleCloseModal();
@@ -65,12 +67,38 @@ const OnboardingModal = ({
       //@TODO: redirect to the home page? or to the profile page? - especialy if it's the first time the user is signing up
     } catch (error) {
       // Handle Errors here.
-      const errorCode = error?.code;
-      const errorMessage = error?.message;
-      // The email of the user's account used.
-      const email = error?.customData.email;
+      console.log("**** err: err signing in with google ****", error);
+    }
+  };
 
-      console.log("**** err: err signing in with google ****", errorMessage);
+  const handleFacebookSignIn = async () => {
+    try {
+      const authResult = await signInWithPopup(auth, facebookAuthProvider);
+      console.log("***** success: successfully signed in with facebook *****");
+      const user = authResult.user;
+      // close the modal
+      handleCloseModal();
+
+      //@TODO: redirect to the home page? or to the profile page? - especialy if it's the first time the user is signing up
+    } catch (error) {
+      // Handle Errors here.
+      console.error("**** err: err signing in with facebook ****", error);
+    }
+  };
+
+  const handleTwitterSignIn = async () => {
+    try {
+      const authResult = await signInWithPopup(auth, twitterAuthProvider);
+      console.log("***** success: successfully signed in with twitter *****");
+
+      const user = authResult.user;
+      // close the modal
+      handleCloseModal();
+
+      //@TODO: redirect to the home page? or to the profile page? - especialy if it's the first time the user is signing up
+    } catch (error) {
+      // Handle Errors here.
+      console.error("**** err: err signing in with twitter ****", error);
     }
   };
 
@@ -95,6 +123,7 @@ const OnboardingModal = ({
             } to continue.`}</small>
           </div>
           <div className="form_buttons">
+            {/* Sign In with google */}
             <Button
               sx={{
                 color: "#ea4335",
@@ -108,6 +137,7 @@ const OnboardingModal = ({
             >
               {`${role === "Signup" ? "Sign Up" : "Login"} with Google`}
             </Button>
+            {/* sign in with facebook */}
             <Button
               sx={{
                 color: "#3b5998",
@@ -117,9 +147,11 @@ const OnboardingModal = ({
               variant="outlined"
               startIcon={!isNotBigScreen && <FacebookIcon />}
               size="large"
+              onClick={handleFacebookSignIn}
             >
               {`${role === "Signup" ? "Sign Up" : "Login"} with Facebook`}
             </Button>
+            {/* sign in with twitter */}
             <Button
               sx={{
                 color: "#00acee",
@@ -129,6 +161,7 @@ const OnboardingModal = ({
               variant="outlined"
               startIcon={!isNotBigScreen && <TwitterIcon />}
               size="large"
+              onClick={handleTwitterSignIn}
             >
               {`${role === "Signup" ? "Sign Up" : "Login"} with Twitter`}
             </Button>

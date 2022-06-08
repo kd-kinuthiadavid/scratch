@@ -7,6 +7,7 @@ import NavBar from "../components/NavBar";
 import Button from "../components/Button";
 import { imagesLoaer } from "../utils";
 import OnboardingModal from "../components/OnboardingModal";
+import ProfilePreviewModal from "../components/Profile/profilePreviewModal";
 
 const bgImgUrl = imagesLoaer("onboarding_bg_img_kKPNX61Ce.png");
 const tbBgImgUrl = imagesLoaer("onboarding_tablet_bg_oxMjU5Zyb.png");
@@ -17,6 +18,8 @@ const Onboarding: NextPage = () => {
   const [ariaModalTitle, setAriaModalTitle] = useState("");
   const [ariaModalDescription, setAriaModalDescription] = useState("");
   const [onBoardingModalRole, setOnBoardingModalRole] = useState("");
+  const [showProfilePreviewModal, setShowProfilePreviewModal] =
+    React.useState(false);
 
   const closeOnboardingModal = () => setIsOnboardingModalOpen(false);
   const openOnboardingModal = () => setIsOnboardingModalOpen(true);
@@ -40,6 +43,11 @@ const Onboarding: NextPage = () => {
     setOnBoardingModalRole("Login");
   };
 
+  const closeProfilePreviewModal = () => setShowProfilePreviewModal(false);
+
+  const toggleProfilePreviewModal = (isOpen: boolean) =>
+    setShowProfilePreviewModal(isOpen);
+
   return (
     <OnboardingWrapper>
       <Head>
@@ -47,6 +55,12 @@ const Onboarding: NextPage = () => {
       </Head>
       <Main>
         <NavBar />
+        {showProfilePreviewModal && (
+          <ProfilePreviewModal
+            isModalOpen={showProfilePreviewModal}
+            handleCloseModal={closeProfilePreviewModal}
+          />
+        )}
         {isOnboardingModalOpen && (
           <OnboardingModal
             isModalOpen={isOnboardingModalOpen}
@@ -54,6 +68,7 @@ const Onboarding: NextPage = () => {
             ariaModalTitle={ariaModalTitle}
             ariaModalDescription={ariaModalDescription}
             role={onBoardingModalRole}
+            toggleProfilePreviewModal={toggleProfilePreviewModal}
           />
         )}
         <div className="main_content">

@@ -9,19 +9,13 @@ import Button from "@mui/material/Button";
 
 import { imagesLoaer } from "../../utils";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import {
-  FacebookAuthProvider,
-  GoogleAuthProvider,
-  signInWithPopup,
-  TwitterAuthProvider,
-} from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 import {
   auth,
   facebookAuthProvider,
   googleAuthProvider,
   twitterAuthProvider,
 } from "../../config/firebaseConfig";
-import { FirebaseError } from "firebase/app";
 
 interface OnboardingModalProps {
   isModalOpen: boolean;
@@ -29,6 +23,7 @@ interface OnboardingModalProps {
   ariaModalTitle: string;
   ariaModalDescription: string;
   role: string;
+  toggleProfilePreviewModal: (isOpen: boolean) => void;
 }
 
 const modalStyle = {
@@ -49,9 +44,20 @@ const OnboardingModal = ({
   ariaModalTitle,
   ariaModalDescription,
   role,
+  toggleProfilePreviewModal,
 }: OnboardingModalProps) => {
   // hooks
   const isNotBigScreen = useMediaQuery("(max-width:800px)");
+
+  const completeSignIn = () => {
+    // @TODO: check if this is a new user or a returning user
+
+    // close the modal
+    handleCloseModal();
+
+    // open the profile preview modal
+    toggleProfilePreviewModal(true);
+  };
 
   const handleGoogleSignIn = async () => {
     try {
@@ -61,10 +67,7 @@ const OnboardingModal = ({
 
       console.log(`***** success: Google Sign In Result *****`);
 
-      // close the modal
-      handleCloseModal();
-
-      //@TODO: redirect to the home page? or to the profile page? - especialy if it's the first time the user is signing up
+      completeSignIn();
     } catch (error) {
       // Handle Errors here.
       console.log("**** err: err signing in with google ****", error);
@@ -76,10 +79,8 @@ const OnboardingModal = ({
       const authResult = await signInWithPopup(auth, facebookAuthProvider);
       console.log("***** success: successfully signed in with facebook *****");
       const user = authResult.user;
-      // close the modal
-      handleCloseModal();
 
-      //@TODO: redirect to the home page? or to the profile page? - especialy if it's the first time the user is signing up
+      completeSignIn();
     } catch (error) {
       // Handle Errors here.
       console.error("**** err: err signing in with facebook ****", error);
@@ -92,10 +93,8 @@ const OnboardingModal = ({
       console.log("***** success: successfully signed in with twitter *****");
 
       const user = authResult.user;
-      // close the modal
-      handleCloseModal();
 
-      //@TODO: redirect to the home page? or to the profile page? - especialy if it's the first time the user is signing up
+      completeSignIn();
     } catch (error) {
       // Handle Errors here.
       console.error("**** err: err signing in with twitter ****", error);

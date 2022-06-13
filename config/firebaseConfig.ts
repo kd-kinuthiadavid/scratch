@@ -8,6 +8,7 @@ import {
   FacebookAuthProvider,
   TwitterAuthProvider,
 } from "firebase/auth";
+import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -28,11 +29,21 @@ const app = initializeApp(firebaseConfig);
 
 // initialize firebase authentication
 const auth = getAuth(app);
+// initialize firebase firestore
+const db = getFirestore();
 
 console.log("***** node_env *****", process.env.NODE_ENV);
 if (process.env.NODE_ENV === "development") {
+  /**
+   * instrument the app to use the firebase emulator suite for
+   * local developmemt.
+   * @see https://firebase.google.com/docs/emulator-suite/connect_and_prototype
+   */
+
   // connect firebase auth emulator
   connectAuthEmulator(auth, "http://localhost:9099");
+  // connect firebase firestore emulator
+  connectFirestoreEmulator(db, "localhost", 8080);
 }
 // initialize firebase analytics
 const analytics = typeof window !== "undefined" && getAnalytics(app);
@@ -44,6 +55,7 @@ const twitterAuthProvider = new TwitterAuthProvider();
 
 export {
   auth,
+  db,
   analytics,
   googleAuthProvider,
   facebookAuthProvider,

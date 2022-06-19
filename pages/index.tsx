@@ -87,11 +87,7 @@ const Onboarding: NextPage = () => {
             text="Join Scratch"
             handleClick={handleSignup}
           />
-          <Button
-            variant="outlined"
-            text="Learn More"
-            handleClick={handleLogin}
-          />
+          <Button variant="outlined" text="Log In" handleClick={handleLogin} />
         </div>
       </Main>
     </OnboardingWrapper>

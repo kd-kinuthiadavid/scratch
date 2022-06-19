@@ -15,6 +15,7 @@ import {
 } from "firebase/firestore";
 
 import { auth, db } from "../../config/firebaseConfig";
+import { useRouter } from "next/router";
 
 interface ProfilePreviewProps {
   isModalOpen: boolean;
@@ -32,6 +33,8 @@ const ProfilePreviewModal = ({
   isModalOpen,
   handleCloseModal,
 }: ProfilePreviewProps) => {
+  // hooks
+  const router = useRouter();
   // current user
   const currentUser = auth.currentUser;
   console.log("***** currentUser", currentUser);
@@ -83,6 +86,7 @@ const ProfilePreviewModal = ({
       handleCloseModal();
 
       // @TODO: redirect to the home page
+      router.push("/feed");
     } catch (error) {
       console.log("*** err: error creating a profile ****", error);
     }

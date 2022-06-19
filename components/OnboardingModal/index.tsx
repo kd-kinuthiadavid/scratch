@@ -6,16 +6,20 @@ import GoogleIcon from "@mui/icons-material/Google";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import Button from "@mui/material/Button";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 import { imagesLoaer } from "../../utils";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { signInWithPopup } from "firebase/auth";
 import {
   auth,
+  FbAuthUser,
+  db,
   facebookAuthProvider,
   googleAuthProvider,
   twitterAuthProvider,
 } from "../../config/firebaseConfig";
+import { useRouter } from "next/router";
 
 interface OnboardingModalProps {
   isModalOpen: boolean;
@@ -48,15 +52,36 @@ const OnboardingModal = ({
 }: OnboardingModalProps) => {
   // hooks
   const isNotBigScreen = useMediaQuery("(max-width:800px)");
+  const router = useRouter();
 
-  const completeSignIn = () => {
+  const completeSignIn = async (authedUser: FbAuthUser) => {
     // @TODO: check if this is a new user or a returning user
+    const profileRef = collection(db, "profiles");
+    const profEmailQuery = query(
+      profileRef,
+      where("email", "==", authedUser.email)
+    );
 
-    // close the modal
-    handleCloseModal();
-
-    // open the profile preview modal
-    toggleProfilePreviewModal(true);
+    try {
+      const querySnap = await getDocs(profEmailQuery);
+      // close the modal
+      handleCloseModal();
+      if (querySnap.empty) {
+        // this is a new user
+        // show them the profile preview modal to create a profile
+        // open the profile preview modal
+        toggleProfilePreviewModal(true);
+      } else {
+        // this is a returning user
+        // redirect them to the home feed page
+        router.push("/feed");
+      }
+    } catch (error) {
+      console.log(
+        "*** err: an error occurred fetching a profile  *****",
+        error
+      );
+    }
   };
 
   const handleGoogleSignIn = async () => {
@@ -67,7 +92,7 @@ const OnboardingModal = ({
 
       console.log(`***** success: Google Sign In Result *****`);
 
-      completeSignIn();
+      completeSignIn(user);
     } catch (error) {
       // Handle Errors here.
       console.log("**** err: err signing in with google ****", error);
@@ -80,7 +105,7 @@ const OnboardingModal = ({
       console.log("***** success: successfully signed in with facebook *****");
       const user = authResult.user;
 
-      completeSignIn();
+      completeSignIn(user);
     } catch (error) {
       // Handle Errors here.
       console.error("**** err: err signing in with facebook ****", error);
@@ -94,7 +119,7 @@ const OnboardingModal = ({
 
       const user = authResult.user;
 
-      completeSignIn();
+      completeSignIn(user);
     } catch (error) {
       // Handle Errors here.
       console.error("**** err: err signing in with twitter ****", error);

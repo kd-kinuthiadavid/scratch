@@ -22,7 +22,6 @@ const Onboarding: NextPage = () => {
     React.useState(false);
 
   const closeOnboardingModal = () => setIsOnboardingModalOpen(false);
-  const openOnboardingModal = () => setIsOnboardingModalOpen(true);
 
   const handleSignup = () => {
     // open the modal

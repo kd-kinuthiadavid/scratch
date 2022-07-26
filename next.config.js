@@ -11,6 +11,8 @@ const nextConfig = {
    * @see: https://nextjs.org/docs/api-reference/next/image#dangerously-allow-svg
    */
   images: {
+    loader: "imgix",
+    path: "https://ik.imagekit.io/",
     domains: ["ik.imagekit.io"],
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from "react";
 import styled from "styled-components";
 import { imagesLoaer } from "../../utils";
@@ -7,13 +6,7 @@ const NavBar = () => {
   const logoURL = imagesLoaer("Logos/Desktop/Logoscratch_logo_SzQC08Uhz.svg");
   return (
     <Nav>
-      <Image
-        src={logoURL}
-        width={200}
-        height={50}
-        alt="Scratch Logo"
-        quality={100}
-      />
+      <img src={logoURL} alt="Scratch Logo" />
     </Nav>
   );
 };

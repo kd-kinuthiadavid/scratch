@@ -58,7 +58,7 @@ jobs:
       - name: Install Doppler CLI
         uses: dopplerhq/cli-action@v1
       - name: Test Doppler Access
-        run: doppler run -- printenv | grep NODE_ENV
+        run: doppler run -- printenv | grep GHA_TEST_SECRET
       - name: Install dependencies
         run: doppler run -- yarn
         # inject environment variables into the built frontend project

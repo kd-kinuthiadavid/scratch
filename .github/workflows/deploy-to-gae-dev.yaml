@@ -24,7 +24,7 @@ jobs:
       uses: dorny/paths-filter@v2
       id: filter
       with:
-        base: develop_v3.0 # perform change detection against develop branch (dev track changes)
+        base: develop # perform change detection against develop branch (dev track changes)
         filters: |
           frontend:
             - '**'

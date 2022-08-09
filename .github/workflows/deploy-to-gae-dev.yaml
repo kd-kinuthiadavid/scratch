@@ -54,7 +54,7 @@ jobs:
           echo "<<<<<<<<<<<<<<<<<<<<<<< frontend changed"
       # set up doppler to inject environment variables to build step
       # test locally: act -P ubuntu-latest=nektos/act-environments-ubuntu:18.04 -e .github/workflows/event_push.json -j frontend -s DOPPLER_TOKEN=<dev-config-service-token>
-      # obtain the service token for the respective config, e.g.: -obtained-from-https://dashboard.doppler.com/workplace/87bb6da69efd6981c8eb/projects/twift/configs/dev/access
+      # obtain the service token for the respective config, e.g.: @see https://dashboard.doppler.com/workplace/9b99458692a3ed3523e7/projects
       - name: Install Doppler CLI
         uses: dopplerhq/cli-action@v1
       - name: Test Doppler Access

@@ -51,7 +51,7 @@ jobs:
         uses: actions/checkout@master
       - name: frontend steps
         run: |
-          echo "<<<<<<<<<<<<<<<<<<<<<<< frontend changed"
+          echo "<<<<<<<<<<<<<<<<<<<<<<< frontend changed ${{ needs.detectChanges.outputs }}"
       # set up doppler to inject environment variables to build step
       # test locally: act -P ubuntu-latest=nektos/act-environments-ubuntu:18.04 -e .github/workflows/event_push.json -j frontend -s DOPPLER_TOKEN=<dev-config-service-token>
       # obtain the service token for the respective config, e.g.: @see https://dashboard.doppler.com/workplace/9b99458692a3ed3523e7/projects

@@ -75,7 +75,7 @@ jobs:
         id: deploy-to-gae
         uses: google-github-actions/deploy-appengine@v0
         with:
-          deliverables: app-alpha.yaml
+          deliverables: app-dev.yaml
           project_id: scratch-dev-ea708
       - name: Test deployment to GAE
         run: |

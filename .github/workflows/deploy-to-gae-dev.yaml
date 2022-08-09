@@ -76,7 +76,7 @@ jobs:
         uses: google-github-actions/deploy-appengine@v0
         with:
           deliverables: app-alpha.yaml
-          project_id: twende-x-dev
+          project_id: scratch-dev-ea708
       - name: Test deployment to GAE
         run: |
           echo "<<<<<<<<<<<<<<<<<<<<<<< opening site on URL: ${{ steps.deploy-to-gae.outputs.url }} >>>>>>>>>>>>>>>>>>>>>>>>"

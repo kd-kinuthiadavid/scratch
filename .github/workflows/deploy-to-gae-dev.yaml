@@ -1,0 +1,143 @@
+name: Deploy to Firebase & GAE (Dev)
+
+# trigger dev deployments when pull requests are created on feature (develop_) & hotfix (debug_) branches against develop branch
+# https://docs.github.com/en/free-pro-team@latest/actions/reference/events-that-trigger-workflows#pull_request
+on:
+  push:
+    branches: [ develop_github_actions, develop_add_GHA_workflows ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  # JOB to run change detection
+  detectChanges:
+    runs-on: ubuntu-latest
+    # Set job outputs to values from filter step
+    outputs:
+      frontend: ${{ steps.filter.outputs.frontend }}
+      functions: ${{ steps.filter.outputs.functions }}
+      securityRules: ${{ steps.filter.outputs.securityRules }}
+    steps:
+    - name: Check out code (file detection)
+      uses: actions/checkout@master
+    - name: Detect file/module changes
+      uses: dorny/paths-filter@v2
+      id: filter
+      with:
+        base: develop # perform change detection against develop branch (dev track changes)
+        filters: |
+          frontend:
+            - '**'
+          functions:
+            - 'functions/**'
+          securityRules:
+            - 'firestore.rules'
+  # JOB to build and deploy frontend code
+  deployFrontend:
+    permissions:
+      contents: read
+      id-token: write
+    # run only if 'frontend' (hosting) files were changed
+    needs: detectChanges
+    if: ${{ needs.detectChanges.outputs.frontend == 'true' }}
+    runs-on: ubuntu-latest
+    env:
+      CI: ""
+      DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN_DEV }}
+      # You get this value by running firebase login:ci. For more info: https://github.com/w9jds/firebase-action#environment-variables
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_DEV }}
+    steps:
+      - name: Check out code (frontend build)
+        uses: actions/checkout@master
+      - name: frontend steps
+        run: |
+          echo "<<<<<<<<<<<<<<<<<<<<<<< frontend changed ${{ needs.detectChanges.outputs.frontend }}"
+      # set up doppler to inject environment variables to build step
+      # test locally: act -P ubuntu-latest=nektos/act-environments-ubuntu:18.04 -e .github/workflows/event_push.json -j frontend -s DOPPLER_TOKEN=<dev-config-service-token>
+      # obtain the service token for the respective config, e.g.: @see https://dashboard.doppler.com/workplace/9b99458692a3ed3523e7/projects
+      - name: Install Doppler CLI
+        uses: dopplerhq/cli-action@v1
+      - name: Test Doppler Access
+        run: doppler run -- printenv | grep GHA_TEST_SECRET
+      - name: Install dependencies
+        run: doppler run -- yarn
+        # inject environment variables into the built frontend project
+      - name: Build (frontend source)
+        run: doppler run -- yarn next build && doppler run -- yarn next export
+        # establish authentication to Google Cloud
+        # adapted from https://github.com/google-github-actions/deploy-appengine#authorization
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v0
+        with:
+          credentials_json: ${{ secrets.GCP_SA_DEV_DEPLOYER }}
+        # deploy to hosting. adapted from https://github.com/google-github-actions/deploy-appengine
+      - name: Deploy to GAE
+        id: deploy-to-gae
+        uses: google-github-actions/deploy-appengine@v0
+        with:
+          deliverables: app-dev.yaml
+          project_id: scratch-dev-ea708
+      - name: Test deployment to GAE
+        run: |
+          echo "<<<<<<<<<<<<<<<<<<<<<<< opening site on URL: ${{ steps.deploy-to-gae.outputs.url }} >>>>>>>>>>>>>>>>>>>>>>>>"
+          curl ${{ steps.deploy-to-gae.outputs.url }}
+
+  # JOB to build and deploy backend code
+  deployFunctions:
+    # run only if 'backend' (functions) files were changed
+    needs: detectChanges
+    if: ${{ needs.detectChanges.outputs.functions == 'true' }}
+    runs-on: ubuntu-latest
+    # inject variables common to some steps
+    env:
+        DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN_DEV }}
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_DEV }}
+    steps:
+      - name: Check out code (backend build)
+        uses: actions/checkout@v2
+      - name: Install Doppler CLI
+        uses: dopplerhq/cli-action@v1
+      - name: functions steps
+        run: |
+          echo ">>>>>>>>>>>>>>>>>>>>>>> functions changed"
+      # Navigate to our functions folder to deploy
+      - name: Install functions dependencies
+        run: |
+          cd functions
+          doppler run -- yarn
+      # Set up environment config variables
+      - name: Pass all secrets to next steps
+        run: doppler secrets download --no-file --silent >> doppler-secrets;
+      - name: Unset current firebase config/env
+        uses: w9jds/firebase-action@master
+        with:
+            args: functions:config:unset env -P default
+      - name: Inject Doppler variables into firebase config/env
+        uses: w9jds/firebase-action@master
+        with:
+            args: functions:config:set env="$(cat doppler-secrets)" -P default
+      # Deploy the functions to Firebase
+      - name:  Deploy to Firebase Functions
+        uses: w9jds/firebase-action@master
+        with:
+            args: deploy --only functions -P default
+
+  # JOB to deploy Firestore security rules
+  deploySecurityRules:
+    # run only if Firestore security file/s changed
+    needs: detectChanges
+    if: ${{ needs.detectChanges.outputs.securityRules == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code (security rules)
+        uses: actions/checkout@v2
+      - name: firestore steps
+        run: |
+          echo "~~~~~~~~~~~~~~~~~~~~~ firestore rules changed"
+      # Deploy the Firestore rules to Firebase
+      - name:  Deploy Firestore Rules
+        uses: w9jds/firebase-action@master
+        with:
+            args: deploy --only firestore:rules -P default
+        env:
+            FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_DEV }}

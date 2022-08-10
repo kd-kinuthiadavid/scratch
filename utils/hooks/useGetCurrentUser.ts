@@ -4,14 +4,15 @@ import { auth } from "../../config/firebaseConfig";
 const useGetCurrentUser = () => {
   let currentUser;
 
-  const authedUser = auth.currentUser;
-  if (authedUser) {
+  const fbAuthUser = auth.currentUser;
+  if (fbAuthUser) {
     // fetch the profile associated with the authed user
   }
 
-  console.log("***** current user ********", authedUser);
+  console.log("***** current user ********", fbAuthUser);
   return {
     currentUser,
+    fbAuthUser
   };
 };
 

@@ -1,9 +1,10 @@
-import { Avatar, Divider } from "@mui/material";
-import React from "react";
+import { Avatar, Button, Divider } from "@mui/material";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { deepOrange } from "@mui/material/colors";
 
 const ProfileSummary = () => {
+  const [isOwnProfile, setIsOwnProfile] = useState(true);
   return (
     <Wrapper>
       <div className="bio_details">
@@ -23,20 +24,35 @@ const ProfileSummary = () => {
         </div>
       </div>
       <Divider variant="middle" style={{ margin: "1rem 0" }} />
-      <div className="foll_details">
-        <div className="foll_detail_item">
-          <p className="item_number">20</p>
-          <p className="item_text">Recipes</p>
+      {isOwnProfile ? (
+        <div className="foll_details">
+          <div className="foll_detail_item">
+            <p className="item_number">20</p>
+            <p className="item_text">Recipes</p>
+          </div>
+          <div className="foll_detail_item">
+            <p className="item_number">75</p>
+            <p className="item_text">Saved</p>
+          </div>
+          <div className="foll_detail_item">
+            <p className="item_number">278</p>
+            <p className="item_text">Following</p>
+          </div>
         </div>
-        <div className="foll_detail_item">
-          <p className="item_number">75</p>
-          <p className="item_text">Saved</p>
-        </div>
-        <div className="foll_detail_item">
-          <p className="item_number">278</p>
-          <p className="item_text">Following</p>
-        </div>
-      </div>
+      ) : (
+        <Button
+          variant="contained"
+          fullWidth={true}
+          style={{
+            backgroundColor: "#30BE76",
+            textTransform: "capitalize",
+            color: "white",
+            fontSize: "1rem",
+          }}
+        >
+          Follow
+        </Button>
+      )}
     </Wrapper>
   );
 };

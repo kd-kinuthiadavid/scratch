@@ -4,7 +4,7 @@ import Layout from "../../components/Layout";
 const Feed = () => {
   return (
     <Layout>
-      <div>This is your feed</div>
+      <div></div>
     </Layout>
   );
 };

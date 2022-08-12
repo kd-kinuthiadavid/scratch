@@ -3,9 +3,9 @@ import { AppProps } from "next/app";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-  <Component {...pageProps} />;
+      <Component {...pageProps} />
     </>
-  )
+  );
 }
 
 // Only uncomment this method if you have blocking data requirements for

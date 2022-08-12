@@ -64,7 +64,7 @@ const NavBar = () => {
     return (
       <>
         <Nav>
-          <img src={logoURL} alt="Scratch Logo" />
+          <img src={logoURL} alt="Scratch Logo" className="nav_icon" />
           {fbAuthUser ? (
             <>
               {!isMobile && !isTablet ? (
@@ -85,9 +85,10 @@ const NavBar = () => {
                 />
               ) : null}
               <NavItems>
-                <RamenDiningOutlinedIcon />
-                <NotificationsIcon />
+                <RamenDiningOutlinedIcon className="nav_icon" />
+                <NotificationsIcon className="nav_icon" />
                 <Avatar
+                  className="nav_icon"
                   alt="Remy Sharp"
                   src="/static/images/avatar/1.jpg"
                   sx={{ bgcolor: deepOrange[500] }}
@@ -120,6 +121,12 @@ const Nav = styled.nav`
   align-items: center;
   padding: 1rem 2.5rem;
   border-radius: 1rem;
+
+  .nav_icon {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
 
 const NavItems = styled.div`
@@ -129,7 +136,9 @@ const NavItems = styled.div`
 `;
 
 const NotificationsIcon = styled(NotificationsNoneIcon)``;
-const FilterIcon = styled(FilterListIcon)``;
+const FilterIcon = styled(FilterListIcon)`
+  cursor: pointer;
+`;
 const MobSearchIcon = styled(SearchIcon)`
   color: black;
 `;
@@ -149,8 +158,17 @@ const AppBarToolbar = styled(Toolbar)`
   justify-content: center;
   gap: 7rem;
 
-  .nav_mobile_bottom:hover {
-    color: #30be76;
+  .nav_mobile_bottom {
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+
+    &:hover {
+      color: #30be76;
+    }
+
+    @media screen and (prefers-reduced-motion) {
+      transition: ;
+    }
   }
 `;
 

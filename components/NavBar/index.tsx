@@ -121,6 +121,9 @@ const Nav = styled.nav`
   align-items: center;
   padding: 1rem 2.5rem;
   border-radius: 1rem;
+  background-color: white;
+  position: sticky;
+  top: 0;
 
   .nav_icon {
     &:hover {

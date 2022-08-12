@@ -48,7 +48,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
           />
         </Head>
-        <body style={{ margin: "0" }}>
+        <body style={{ margin: "0", fontFamily: "Nunito" }}>
           <Main />
           <NextScript />
         </body>

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Layout from "../../components/Layout";
+import ProfileActions from "../../components/Profile/ProfileActions";
 import ProfileSummary from "../../components/Profile/ProfileSummary";
 
 const Profile = () => {
@@ -9,6 +10,7 @@ const Profile = () => {
       <ProfileWrapper>
         <ProfileDetails>
           <ProfileSummary />
+          <ProfileActions />
         </ProfileDetails>
         <ProfileRecipes />
       </ProfileWrapper>

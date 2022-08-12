@@ -16,6 +16,7 @@ const ProfRecipesHeader = () => {
           borderColor: "#30BE76",
           textTransform: "capitalize",
           fontSize: "1rem",
+          backgroundColor: "white",
         }}
       >
         Add New

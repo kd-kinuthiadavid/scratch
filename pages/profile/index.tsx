@@ -74,6 +74,13 @@ const ProfileWrapper = styled.div`
     column-gap: 4rem;
     padding: 0 3rem;
   }
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+  @media (max-width: 450px) {
+    padding: 0 1rem;
+  }
 `;
 
 const ProfileDetails = styled.div`

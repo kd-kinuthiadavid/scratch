@@ -21,38 +21,18 @@ const profCats: ProfileRecipeCategory[] = [
     imgUrl: imagesLoaer("Recipe_categories/italian_1x_dlGmsmygR.png"),
     count: 2,
   },
-  {
-    catName: "Desserts",
-    imgUrl: imagesLoaer("Recipe_categories/desserts_2x_qiwgY7cRVu.png"),
-    count: 3,
-  },
-  {
-    catName: "Chocolates",
-    imgUrl: imagesLoaer(
-      "Recipe_categories/chocos_2x_6S14HBH75P.png?ik-sdk-version=javascript-1.4.3&updatedAt=1660480461695"
-    ),
-    count: 2,
-  },
+
   {
     catName: "Soups",
     imgUrl: imagesLoaer("Recipe_categories/soups_2x_H-JWqTks3y.png"),
     count: 4,
   },
   {
-    catName: "Pasta",
-    imgUrl: imagesLoaer("Recipe_categories/pasta_1x_TfL8C1fel.png"),
-    count: 1,
-  },
-  {
-    catName: "Italian",
-    imgUrl: imagesLoaer("Recipe_categories/italian_1x_dlGmsmygR.png"),
-    count: 2,
-  },
-  {
     catName: "Soups",
     imgUrl: imagesLoaer("Recipe_categories/soups_2x_H-JWqTks3y.png"),
     count: 4,
   },
+
   {
     catName: "Soups",
     imgUrl: imagesLoaer("Recipe_categories/soups_2x_H-JWqTks3y.png"),

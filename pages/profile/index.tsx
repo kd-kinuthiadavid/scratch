@@ -69,6 +69,11 @@ const ProfileWrapper = styled.div`
   grid-template-columns: 1fr [col-start] 4fr [col-start];
   column-gap: 8rem;
   padding: 0 10rem;
+
+  @media (max-width: 1200px) {
+    column-gap: 4rem;
+    padding: 0 3rem;
+  }
 `;
 
 const ProfileDetails = styled.div`

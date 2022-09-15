@@ -4,7 +4,7 @@ name: Deploy to Firebase & GAE (Dev)
 # https://docs.github.com/en/free-pro-team@latest/actions/reference/events-that-trigger-workflows#pull_request
 on:
   push:
-    branches: [ develop_github_actions, develop_add_GHA_workflows ]
+    branches: [ develop_github_actions, develop_add_GHA_workflows, develop ]
   pull_request:
     branches: [ develop ]
 

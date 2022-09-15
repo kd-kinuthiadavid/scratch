@@ -122,7 +122,6 @@ const Nav = styled.nav`
   padding: 1rem 2.5rem;
   border-radius: 1rem;
   background-color: white;
-  position: sticky;
   top: 0;
 
   .nav_icon {
@@ -170,7 +169,7 @@ const AppBarToolbar = styled(Toolbar)`
     }
 
     @media screen and (prefers-reduced-motion) {
-      transition: ;
+      transition: all 0.25s ease-in-out;
     }
   }
 `;

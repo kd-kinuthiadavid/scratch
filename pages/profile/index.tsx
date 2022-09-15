@@ -8,8 +8,10 @@ import ProfRecipeCategories, {
 } from "../../components/Profile/ProfRecipeCategories";
 import ProfRecipesHeader from "../../components/Profile/ProfRecipesHeader";
 import { imagesLoaer } from "../../utils";
+import ProfileRecipesList, {
+  RecipesList,
+} from "../../components/Profile/ProfileRecipesList";
 
-const logoURL = imagesLoaer("Logos/Desktop/Logoscratch_logo_SzQC08Uhz.svg");
 const profCats: ProfileRecipeCategory[] = [
   {
     catName: "Western",
@@ -45,6 +47,49 @@ const profCats: ProfileRecipeCategory[] = [
   },
 ];
 
+const recipes: RecipesList = [
+  {
+    name: "Cooked Coconut Mussels",
+    coverImgUrl: imagesLoaer("Recipes/RecImgs/grilled_pepper_1x_UX9hWjnsQ.png"),
+    ingredientsCount: 4,
+    cookTime: "5 mins",
+  },
+  {
+    name: "Grilled Black Pepper Prawns",
+    coverImgUrl: imagesLoaer("Recipes/RecImgs/grilled_pepper_1x_UX9hWjnsQ.png"),
+    ingredientsCount: 4,
+    cookTime: "45 mins",
+  },
+  {
+    name: "Smoked Carrots & Ginger Mammoth",
+    coverImgUrl: imagesLoaer("Recipes/RecImgs/smoked_carrots_1x_buQCyMxdo.png"),
+    ingredientsCount: 5,
+    cookTime: "30 mins",
+  },
+  {
+    name: "Shallow-Fried Peppermint Frog",
+    coverImgUrl: imagesLoaer(
+      "Recipes/RecImgs/shallow_fried_pepper_1x_QqMVtsC2u.png"
+    ),
+    ingredientsCount: 4,
+    cookTime: "25 mins",
+  },
+  {
+    name: "Fish Floating In Forest",
+    coverImgUrl: imagesLoaer(
+      "Recipes/RecImgs/onions_spaghetti_1x_-bETPz6uI.png"
+    ),
+    ingredientsCount: 3,
+    cookTime: "35 mins",
+  },
+  {
+    name: "Indian Rice With A Twist",
+    coverImgUrl: imagesLoaer("Recipes/RecImgs/grilled_pepper_1x_UX9hWjnsQ.png"),
+    ingredientsCount: 6,
+    cookTime: "55 mins",
+  },
+];
+
 const Profile = () => {
   return (
     <Layout>
@@ -56,6 +101,7 @@ const Profile = () => {
         <ProfileRecipes>
           <ProfRecipesHeader />
           <ProfRecipeCategories profileCats={profCats} />
+          <ProfileRecipesList recipes={recipes} />
         </ProfileRecipes>
       </ProfileWrapper>
     </Layout>
@@ -63,12 +109,13 @@ const Profile = () => {
 };
 
 const ProfileWrapper = styled.div`
-  height: 100vh;
+  height: 100%;
   background-color: #f7f8fa;
   display: grid;
   grid-template-columns: 1fr [col-start] 4fr [col-start];
   column-gap: 8rem;
   padding: 0 10rem;
+  padding-bottom: 5rem;
 
   @media (max-width: 1200px) {
     column-gap: 4rem;
@@ -89,8 +136,7 @@ const ProfileDetails = styled.div`
 
 const ProfileRecipes = styled.div`
   margin-top: 2.5rem;
-  overflow-x: scroll;
-  white-space: nowrap;
+  margin-bottom: 7rem;
 `;
 
 export default Profile;

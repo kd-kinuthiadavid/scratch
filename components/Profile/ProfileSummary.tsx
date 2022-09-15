@@ -71,6 +71,10 @@ const Wrapper = styled.div`
     justify-content: space-evenly;
     align-items: start;
 
+    @media (min-width: 900px) {
+      gap: 1.5rem;
+    }
+
     .text_details {
       color: #606060;
       font-size: 0.9rem;

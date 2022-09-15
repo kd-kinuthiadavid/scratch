@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { deepOrange } from "@mui/material/colors";
 
 const ProfileSummary = () => {
-  const [isOwnProfile, setIsOwnProfile] = useState(true);
+  const [isOwnProfile, _setIsOwnProfile] = useState(true);
   return (
     <Wrapper>
       <div className="bio_details">

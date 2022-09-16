@@ -149,6 +149,7 @@ const Main = styled.main`
     font-weight: 600;
     line-height: 55px;
     letter-spacing: -0.5px;
+    text-transform: capitalize;
     max-width: 50vw;
     color: #030f09;
 

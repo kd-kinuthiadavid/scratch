@@ -155,6 +155,7 @@ const MobileSearchWrapper = styled.div`
   margin-right: 1rem;
   box-shadow: 15px 13px 25px 10px rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
+  background-color: white;
 `;
 
 const AppBarToolbar = styled(Toolbar)`

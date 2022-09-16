@@ -151,6 +151,8 @@ const MobileSearchWrapper = styled.div`
   align-items: center;
   padding: 1rem 2rem;
   margin-top: 3rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
   box-shadow: 15px 13px 25px 10px rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
 `;

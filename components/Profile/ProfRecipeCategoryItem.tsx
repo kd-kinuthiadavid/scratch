@@ -30,8 +30,12 @@ const CatImg = styled.img`
   height: 10rem;
   object-fit: cover;
   border-radius: 0.6rem;
-  opacity: 0.3;
   transition: all 0.04s ease-in;
+
+  /* reduce opacity for devices that have hover, i.e, browser */
+  @media (hover: hover) {
+    opacity: 0.3;
+  }
 
   @media screen and (prefers-reduced-motion) {
     transition: none;

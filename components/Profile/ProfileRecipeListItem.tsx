@@ -14,7 +14,7 @@ const ProfileRecipeListItem = ({ recipe }: ItemProps) => {
       <div className="footer">
         <div className="footer_desc">
           <small>{recipe.cookTime}</small>
-          <small> {recipe.ingredientsCount + `ingredients`} </small>
+          <small> {recipe.ingredientsCount + ` ingredients`} </small>
         </div>
         <button>Cook</button>
       </div>

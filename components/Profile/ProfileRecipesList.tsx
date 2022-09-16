@@ -27,7 +27,6 @@ const ProfileRecipesList = ({ recipes }: RecipesListProps) => {
 };
 
 const Wrapper = styled.div`
-  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;

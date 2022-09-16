@@ -2,7 +2,6 @@ import { NextPage } from "next";
 import Head from "next/head";
 import React, { useState } from "react";
 import styled from "styled-components";
-import NavBar from "../components/NavBar";
 
 import Button from "../components/Button";
 import { imagesLoaer } from "../utils";
@@ -11,6 +10,7 @@ import ProfilePreviewModal from "../components/Profile/profilePreviewModal";
 
 const bgImgUrl = imagesLoaer("onboarding_bg_img_kKPNX61Ce.png");
 const tbBgImgUrl = imagesLoaer("onboarding_tablet_bg_oxMjU5Zyb.png");
+const logoURL = imagesLoaer("Logos/Desktop/Logoscratch_logo_SzQC08Uhz.svg");
 
 const Onboarding: NextPage = () => {
   // state
@@ -53,7 +53,7 @@ const Onboarding: NextPage = () => {
         <title>Scratch | Onboarding</title>
       </Head>
       <Main>
-        <NavBar />
+        <img src={logoURL} alt="Scratch Logo" className="nav_icon" />
         {showProfilePreviewModal && (
           <ProfilePreviewModal
             isModalOpen={showProfilePreviewModal}
@@ -118,6 +118,15 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
 
+  .nav_icon {
+    width: 8rem;
+    height: 5rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   @media (max-width: 600px) {
     padding-top: 10rem !important;
   }
@@ -140,6 +149,7 @@ const Main = styled.main`
     font-weight: 600;
     line-height: 55px;
     letter-spacing: -0.5px;
+    text-transform: capitalize;
     max-width: 50vw;
     color: #030f09;
 

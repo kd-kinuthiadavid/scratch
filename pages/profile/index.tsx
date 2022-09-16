@@ -110,7 +110,6 @@ const Profile = () => {
 
 const ProfileWrapper = styled.div`
   height: 100%;
-  background-color: #f7f8fa;
   display: grid;
   grid-template-columns: 1fr [col-start] 4fr [col-start];
   column-gap: 8rem;

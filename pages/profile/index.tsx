@@ -100,7 +100,9 @@ const Profile = () => {
         </ProfileDetails>
         <ProfileRecipes>
           <ProfRecipesHeader />
-          <ProfRecipeCategories profileCats={profCats} />
+          <ProfileCatsWrapper>
+            <ProfRecipeCategories profileCats={profCats} />
+          </ProfileCatsWrapper>
           <ProfileRecipesList recipes={recipes} />
         </ProfileRecipes>
       </ProfileWrapper>
@@ -134,8 +136,13 @@ const ProfileDetails = styled.div`
 `;
 
 const ProfileRecipes = styled.div`
+  overflow-x: hidden;
   margin-top: 2.5rem;
   margin-bottom: 7rem;
+`;
+
+const ProfileCatsWrapper = styled.div`
+  overflow-x: scroll;
 `;
 
 export default Profile;

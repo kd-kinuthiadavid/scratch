@@ -24,10 +24,10 @@ const ProfRecipeCategories = ({ profileCats }: ProfRecipeCategoriesProps) => {
 };
 
 const CategoriesWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.9rem;
   margin: 2rem 0;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 1rem;
 `;
 
 export type { ProfileRecipeCategory };

@@ -26,8 +26,7 @@ const Wrapper = styled.div`
   width: 100%;
 
   img {
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
+    border-radius: 0.5rem;
     object-fit: cover;
     width: 100%;
   }

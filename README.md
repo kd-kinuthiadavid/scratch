@@ -1,30 +1,24 @@
-# TypeScript & Styled Components Next.js example
+# SCRATCH.
+Share your recipes with the world, in a social-media like experience. Follow your favourite cooks and enjoy a variety of features such as Live Cooking Mode.
 
-This is a really simple project that show the usage of Next.js with TypeScript and Styled Components.
+## About
 
-## Deploy your own
+Scratch is more than "just another recipe app". Scratch leverages the familiar look and feel of social media apps by providing you with a platform that allows you to nurture that inner-chef spirit deep within you. Scratch offers the following:
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-typescript-styled-components)
+- Share your excellent recipes, ingredients and tips
+- Follow your favourite cooks
+- Live Cooking Mode.
+    - Live stream as you cook and display your excellent cullinary cooks
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-typescript-styled-components&project-name=with-typescript-styled-components&repository-name=with-typescript-styled-components)
+## Built With
 
-## How to use it?
+- [React (NextJs)](https://nextjs.org/) and [Typescript](https://www.typescriptlang.org/)
+- [Styled-Components](https://styled-components.com/)
+- [Firebase (Firestore, Firebase Auth)](https://firebase.google.com/)
+- [Doppler - (for secrets and environment variables management)](https://www.doppler.com/)
+- [Github Actions - for CI/CD](https://github.com/features/actions)
+- [Google App Engine - for hosting](https://cloud.google.com/appengine)
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+## Contributing
 
-```bash
-npx create-next-app --example with-typescript-styled-components with-typescript-styled-components-app
-# or
-yarn create next-app --example with-typescript-styled-components with-typescript-styled-components-app
-# or
-pnpm create next-app -- --example with-typescript-styled-components with-typescript-styled-components-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
-
-## Notes
-
-This is an amalgamation of the 2 existing examples:
-
-- [with-typescript](https://github.com/vercel/next.js/tree/canary/examples/with-typescript)
-- [with-styled-components](https://github.com/vercel/next.js/tree/canary/examples/with-styled-components)
+Please reach out to me on my [email](mailto:kd.kinuthiadavid@gmail) if you wish to contribute to this project so that I can provide you with the required access creds. However, if you wish to play around with the code, feel free to `clone` the repo.

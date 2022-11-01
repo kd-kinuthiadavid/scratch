@@ -18,7 +18,12 @@ const ProfileSummary = () => {
           className="nav_icon"
           alt="Remy Sharp"
           src="/static/images/avatar/1.jpg"
-          sx={{ bgcolor: deepOrange[500], width: 65, height: 65 }}
+          sx={{
+            bgcolor: deepOrange[500],
+            width: 65,
+            height: 65,
+            cursor: "pointer",
+          }}
         />
         <div className="text_details">
           <p className="user_name">Nick Evans</p>

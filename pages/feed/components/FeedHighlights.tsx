@@ -27,6 +27,7 @@ const FeedHighlights = () => {
               justifyContent: "center",
               alignItems: "center",
               fontSize: "1rem",
+              cursor: "pointer",
             }}
           >
             RS
@@ -42,6 +43,7 @@ const FeedHighlights = () => {
               justifyContent: "center",
               alignItems: "center",
               fontSize: "1rem",
+              cursor: "pointer",
             }}
           >
             DK
@@ -57,6 +59,7 @@ const FeedHighlights = () => {
               justifyContent: "center",
               alignItems: "center",
               fontSize: "1rem",
+              cursor: "pointer",
             }}
           >
             MK
@@ -72,6 +75,7 @@ const FeedHighlights = () => {
               justifyContent: "center",
               alignItems: "center",
               fontSize: "1rem",
+              cursor: "pointer",
             }}
           >
             MK
@@ -87,6 +91,7 @@ const FeedHighlights = () => {
               justifyContent: "center",
               alignItems: "center",
               fontSize: "1rem",
+              cursor: "pointer",
             }}
           >
             MK

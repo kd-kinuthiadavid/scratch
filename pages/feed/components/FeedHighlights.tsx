@@ -1,8 +1,13 @@
 import Avatar from "@mui/material/Avatar";
+import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
 
 const FeedHighlights = () => {
+  const router = useRouter();
+
+  const handleRedirectToProfile = () => router.push("/profile");
+
   return (
     <Wrapper>
       <div className="highlights_card live">
@@ -12,6 +17,7 @@ const FeedHighlights = () => {
         <p>Most Active Today</p>
         <div className="users">
           <Avatar
+            onClick={handleRedirectToProfile}
             alt="Remy Sharp"
             sx={{
               backgroundColor: "orange",
@@ -26,6 +32,7 @@ const FeedHighlights = () => {
             RS
           </Avatar>
           <Avatar
+            onClick={handleRedirectToProfile}
             alt="Remy Sharp"
             sx={{
               backgroundColor: "purple",
@@ -41,6 +48,7 @@ const FeedHighlights = () => {
           </Avatar>
           <Avatar
             alt="Remy Sharp"
+            onClick={handleRedirectToProfile}
             sx={{
               backgroundColor: "pink",
               width: "10",
@@ -55,6 +63,7 @@ const FeedHighlights = () => {
           </Avatar>
           <Avatar
             alt="Remy Sharp"
+            onClick={handleRedirectToProfile}
             sx={{
               backgroundColor: "green",
               width: "10",
@@ -69,6 +78,7 @@ const FeedHighlights = () => {
           </Avatar>
           <Avatar
             alt="Remy Sharp"
+            onClick={handleRedirectToProfile}
             sx={{
               backgroundColor: "pink",
               width: "10",

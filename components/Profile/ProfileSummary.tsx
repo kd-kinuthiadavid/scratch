@@ -2,13 +2,19 @@ import { Avatar, Button, Divider } from "@mui/material";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { deepOrange } from "@mui/material/colors";
+import { useRouter } from "next/router";
 
 const ProfileSummary = () => {
   const [isOwnProfile, _setIsOwnProfile] = useState(true);
+  const router = useRouter();
+
+  const handleRedirect = () => router.push("/profile");
+
   return (
     <Wrapper>
       <div className="bio_details">
         <Avatar
+          onClick={handleRedirect}
           className="nav_icon"
           alt="Remy Sharp"
           src="/static/images/avatar/1.jpg"
